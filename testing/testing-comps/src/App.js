@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Swal from 'sweetalert2'
 
 //  fucntion
 export default function App() {
@@ -17,6 +18,12 @@ export default function App() {
 
   const handleClose = () => {
     setOpen(false);
+    Swal.fire({
+      title: 'Error!',
+      text: 'Do you want to continue',
+      icon: 'error',
+      confirmButtonText: 'Cool'
+    });
   };
 
   return (
@@ -35,7 +42,7 @@ export default function App() {
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
+            label="e-mail"
             type="email"
             fullWidth
             variant="standard"
@@ -43,7 +50,7 @@ export default function App() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

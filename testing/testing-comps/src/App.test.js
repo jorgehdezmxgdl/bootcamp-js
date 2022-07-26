@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 /*
@@ -17,6 +18,20 @@ test('renders learn react link', () => {
   render(<App />);
   const linkElement = screen.getByText(/open form dialog/i);
   expect(linkElement).toBeInTheDocument();
+});
+
+describe('Put and validate email field', () => {
+  it('Put mail', () => {
+    render(<App />);
+    userEvent.click(screen.getByText('Open form dialog'));
+    const email = screen.getByLabelText('e-mail');
+    expect(email).toBeInTheDocument();
+    expect(email).toHaveValue('');
+    email.value = 'jorgehdezmxgdl@gmail.com';
+    userEvent.click(screen.getByText('Ok'));
+    
+  });
+  
 });
 
 
