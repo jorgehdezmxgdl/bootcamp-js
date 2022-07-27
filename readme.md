@@ -4,7 +4,7 @@
 
 [MongoDB](/mongodb/mongodb.pdf)
 
-[Clean Code](/qa/Clean Code.md)
+[CleanCode](/qa/CleanCode.md)
 
-[Solid Principles](/qa/Solid Principles.md)
+[SolidPrinciples](/qa/SolidPrinciples.md)
 
