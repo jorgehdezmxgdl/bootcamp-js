@@ -1,0 +1,21 @@
+----------- EsInt
+
+npm install eslint --save-dev
+npm init @eslint/config
+npx eslint yourfile.js
+
+
+----------- Sonarqube
+
+https://www.sonarqube.org/features/deployment/
+
+Image from Docker:
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+Credentials to sign in:
+username: admin
+password: admin
+
+
+Run scanner:
+docker run --rm  -e SONAR_HOST_URL="http://<IP:PORT>"  -e SONAR_LOGIN="<TOKEN>"  -v "<PATH_SRC>:/usr/src"  sonarsource/sonar-scanner-cli

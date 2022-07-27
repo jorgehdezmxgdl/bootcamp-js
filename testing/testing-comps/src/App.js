@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  { useRef } from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,9 +9,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Swal from 'sweetalert2'
 
-//  fucntion
+
 export default function App() {
   const [open, setOpen] = React.useState(false);
+  const valueRef = useRef('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,13 +20,26 @@ export default function App() {
 
   const handleClose = () => {
     setOpen(false);
-    Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      icon: 'error',
-      confirmButtonText: 'Cool'
-    });
   };
+
+  const handleClickOpen2 = () => {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (valueRef.current.value.match(validRegex)) {
+        Swal.fire({
+          title: 'Information',
+          text: 'The email is valid',
+          confirmButtonText: 'Ok'
+        });
+    } else {
+       Swal.fire({
+        title: 'Error!',
+        text: 'The email is not valid',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      });
+    }
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -45,12 +60,13 @@ export default function App() {
             label="e-mail"
             type="email"
             fullWidth
+            inputRef={valueRef} 
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Ok</Button>
+          <Button onClick={handleClickOpen2}>Ok</Button>
         </DialogActions>
       </Dialog>
     </div>

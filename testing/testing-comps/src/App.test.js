@@ -21,17 +21,31 @@ test('renders learn react link', () => {
 });
 
 describe('Put and validate email field', () => {
-  it('Put mail', () => {
+  it('Put mail and validate', () => {
     render(<App />);
     userEvent.click(screen.getByText('Open form dialog'));
     const email = screen.getByLabelText('e-mail');
     expect(email).toBeInTheDocument();
     expect(email).toHaveValue('');
     email.value = 'jorgehdezmxgdl@gmail.com';
-    userEvent.click(screen.getByText('Ok'));
-    
+    userEvent.click(screen.getByText('OK'));
+    const response = screen.getByText(/the email is valid/i);
+    expect(response).toBeInTheDocument();
   });
-  
 });
 
+
+describe('Put a email address and check it not is correct', () => {
+  it('Write and check', () => {
+    render(<App />);
+    userEvent.click(screen.getByText('Open form dialog'));
+    const email = screen.getByLabelText('e-mail');
+    expect(email).toBeInTheDocument();
+    expect(email).toHaveValue('');
+    email.value = 'jorgehdezmxgdl@@gmail.com';
+    userEvent.click(screen.getByText('OK'));
+    const response = screen.getByText(/the email is not valid/i);
+    expect(response).toBeInTheDocument();
+  });
+});
 
